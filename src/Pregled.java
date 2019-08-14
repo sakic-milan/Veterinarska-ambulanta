@@ -1,6 +1,6 @@
 
 public class Pregled {
 	
-	private String veterinar;
+	private String veterinarIme;
 
 }
