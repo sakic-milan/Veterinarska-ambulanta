@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Pregled {
 	
@@ -89,9 +90,11 @@ public class Pregled {
 
 	@Override
 	public String toString() {
-		return "Pregled [id=" + id + ", imeZivotinje=" + imeZivotinje + ", imeVeterinara=" + imeVeterinara
-				+ ", prezimeVeterinara=" + prezimeVeterinara + ", bolest=" + bolest + ", terapija=" + terapija
-				+ ", datum=" + datum + ", cena=" + cena + ", vrsta=" + vrsta + "]";
+	
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+		return String .format("%-6d %-14s %-14s %-14s %-14s %-14s %-14s "
+				+ "%-10.2f %-14s ", id, imeZivotinje, imeVeterinara, prezimeVeterinara,
+				bolest, terapija, dtf.format(datum), cena, vrsta);
 	}
 	
 	
