@@ -1,3 +1,10 @@
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Ambulanta {
@@ -102,7 +109,45 @@ public class Ambulanta {
 	}
 	
 	
-	
+	// cuvanje u fajl
+	public void save(String path) {
+		
+		ArrayList<String> zaUpis = new ArrayList<>();
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+		
+		for (int i = 0; i < pregledi.size() ;i++ ) {
+			Pregled temp = pregledi.get(i);
+			
+			 int id = temp.getId(); // mora biti >0
+			 String imeZivotinje = temp.getImeZivotinje();
+			 String imeVeterinara = temp.getImeVeterinara();
+			 String prezimeVeterinara = temp.getPrezimeVeterinara();
+			 String bolest = temp.getBolest();
+			 String terapija = temp.getTerapija();
+			 LocalDate datum = temp.getDatum();
+			 double cena = temp.getCena(); // mora biti >0
+			 String vrsta = temp.getVrsta(); // mora biti: pas, macka, ptica, ribica, kornjaca, gmizavac ili ostalo
+			
+			 String datumString = dtf.format(datum);
+			 
+			 String line = id + ";" + imeZivotinje + ";" + imeVeterinara + ";" +
+					 prezimeVeterinara + ";" + bolest + ";" + terapija + ";" + 
+					 	datumString + ";" + cena + ";" + vrsta;
+			 
+			 zaUpis.add(line);
+			 
+			 try {
+				Files.write(Paths.get(path), zaUpis, Charset.defaultCharset(), StandardOpenOption.WRITE, 
+						 StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Neuspesno cuvanje!");
+			}
+			 
+		}
+		
+		
+	}
 	
 	
 
