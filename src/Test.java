@@ -11,6 +11,12 @@ public class Test {
 		
 		System.out.println(testPregled);
 		
+		Ambulanta amb = new Ambulanta();
+		amb.setAdresa("Neka ulica");
+		amb.setNaziv("Moja glista");
+		amb.setPib("125526524588");
+		System.out.println(amb);
+		
 		
 	}
 
