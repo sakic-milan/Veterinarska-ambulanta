@@ -1,100 +1,128 @@
+
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Pregled {
 	
 	// atributi
-	private int id; // mora biti >0
-	private String imeZivotinje;
-	private String imeVeterinara;
-	private String prezimeVeterinara;
+	private int id; // >0
+	private String ime;
+	private String veterinarIme;
+	private String veterinarPrezime;
 	private String bolest;
 	private String terapija;
 	private LocalDate datum;
-	private double cena; // mora biti >0
-	private String vrsta; // mora biti: pas, macka, ptica, ribica, kornjaca, gmizavac ili ostalo
+	private double cena; //>0
+	private String vrsta; //pas, macka, ptica, ribica, kornjaca, gmizavac, ostalo
+	
+	
+	// konstruktori
 	
 	public Pregled() {
-		super();
 	}
 	
-	public Pregled(int id, String imeZivotinje, String imeVeterinara, String prezimeVeterinara, String bolest,
-			String terapija, LocalDate datum, double cena, String vrsta) {
-		super();
+	public Pregled(int id, String ime, String bolest) {
 		this.id = id;
-		this.imeZivotinje = imeZivotinje;
-		this.imeVeterinara = imeVeterinara;
-		this.prezimeVeterinara = prezimeVeterinara;
+		this.ime = ime;
+		this.bolest = bolest;
+	}
+	
+	
+	public Pregled(int id, String ime, String veterinarIme, String veterinarPrezime, String bolest, String terapija,
+			LocalDate datum, double cena, String vrsta) {
+		this.id = id;
+		this.ime = ime;
+		this.veterinarIme = veterinarIme;
+		this.veterinarPrezime = veterinarPrezime;
 		this.bolest = bolest;
 		this.terapija = terapija;
 		this.datum = datum;
 		this.cena = cena;
 		this.vrsta = vrsta;
 	}
+	
+	// getteri i setteri
 
-	// geteri i seteri
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getImeZivotinje() {
-		return imeZivotinje;
+
+	public String getIme() {
+		return ime;
 	}
-	public void setImeZivotinje(String imeZivotinje) {
-		this.imeZivotinje = imeZivotinje;
+
+	public void setIme(String ime) {
+		this.ime = ime;
 	}
-	public String getImeVeterinara() {
-		return imeVeterinara;
+
+	public String getVeterinarIme() {
+		return veterinarIme;
 	}
-	public void setImeVeterinara(String imeVeterinara) {
-		this.imeVeterinara = imeVeterinara;
+
+	public void setVeterinarIme(String veterinarIme) {
+		this.veterinarIme = veterinarIme;
 	}
-	public String getPrezimeVeterinara() {
-		return prezimeVeterinara;
+
+	public String getVeterinarPrezime() {
+		return veterinarPrezime;
 	}
-	public void setPrezimeVeterinara(String prezimeVeterinara) {
-		this.prezimeVeterinara = prezimeVeterinara;
+
+	public void setVeterinarPrezime(String veterinarPrezime) {
+		this.veterinarPrezime = veterinarPrezime;
 	}
+
 	public String getBolest() {
 		return bolest;
 	}
+
 	public void setBolest(String bolest) {
 		this.bolest = bolest;
 	}
+
 	public String getTerapija() {
 		return terapija;
 	}
+
 	public void setTerapija(String terapija) {
 		this.terapija = terapija;
 	}
+
 	public LocalDate getDatum() {
 		return datum;
 	}
+
 	public void setDatum(LocalDate datum) {
 		this.datum = datum;
 	}
+
 	public double getCena() {
 		return cena;
 	}
+
 	public void setCena(double cena) {
 		this.cena = cena;
 	}
+
 	public String getVrsta() {
 		return vrsta;
 	}
+
 	public void setVrsta(String vrsta) {
 		this.vrsta = vrsta;
 	}
-
-	@Override
-	public String toString() {
 	
+	
+	// toString
+	
+	public String toString() {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
-		return String .format("%-6d %-14s %-14s %-14s %-14s %-14s %-14s "
-				+ "%-10.2f %-14s ", id, imeZivotinje, imeVeterinara, prezimeVeterinara,
-				bolest, terapija, dtf.format(datum), cena, vrsta);
+		return String.format("%-6d %-14s %-14s %-14s %-14s %-14s %-14s %-10.2f %-12s", id, ime, 
+					veterinarIme, veterinarPrezime, bolest, terapija, dtf.format(datum), cena, vrsta);
 	}
 	
 	
